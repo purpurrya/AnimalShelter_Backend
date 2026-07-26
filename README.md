@@ -1,92 +1,80 @@
-# AnimalShelter_Backend
+# AnimalShelter Backend
 
-## Описание проекта
+Курсовой проект по дисциплине «Веб-разработка» (ДВФУ, 2024.
 
-AnimalShelter_Backend — это серверная часть сайта для управления приютом для животных 9Life, разработанная с использованием фреймворка Laravel в рамках проекта по дисциплине Программная Инженерия. Она предоставляет API для управления информацией, связанной с приютом, анкетами животных, а также для взаимодействия с пользователями, включая аутентификацию и личный кабинет с отслеживанием понравившихся анкет.
+AnimalShelter Backend — серверная часть сайта приюта для животных 9Life. Предоставляет API для работы с анкетами животных, пользователями, аутентификацией и личным кабинетом.
 
-## Гайд по развертыванию
+## Технологии
 
-1. **Клонирование репозитория:**
+- PHP
+- Laravel
+- Composer
+- JWT Authentication
+- Docker
 
-   ```bash
-   git clone https://github.com/purpurrya/AnimalShelter_Backend.git
-   cd AnimalShelter_Backend
-   ```
+## Развёртывание
 
-2. **Установка зависимостей:**
+### Клонирование репозитория
 
-   Убедитесь, что у вас установлен [Composer](https://getcomposer.org/).
+```bash
+git clone https://github.com/purpurrya/AnimalShelter_Backend.git
+cd AnimalShelter_Backend
+```
 
-   ```bash
-   composer install
-   ```
+### Установка зависимостей
 
-3. **Настройка файла окружения:**
+```bash
+composer install
+```
 
-   Скопируйте файл `.env.example` в `.env`:
+### Настройка окружения
 
-   ```bash
-   cp .env.example .env
-   ```
+```bash
+cp .env.example .env
+```
 
-   Отредактируйте файл `.env`, указав настройки базы данных и другие параметры.
+После создания файла `.env` необходимо указать параметры подключения к базе данных.
 
-4. **Генерация ключей:**
+### Генерация ключей
 
-   Сгенерируйте ключ приложения Laravel:
+```bash
+php artisan key:generate
+php artisan jwt:secret
+```
 
-   ```bash
-   php artisan key:generate
-   ```
+### Миграции
 
-   Сгенерируйте секретный ключ для JWT-аутентификации:
+```bash
+php artisan migrate
+php artisan db:seed
+```
 
-   ```bash
-   php artisan jwt:secret
-   ```
-
-5. **Миграции и сиды:**
-
-   Выполните миграции и, при необходимости, сидирование базы данных:
-
-   ```bash
-   php artisan migrate
-   php artisan db:seed
-   ```
-
-## Гайд по запуску
+## Запуск
 
 ### Ручной запуск
 
-1. **Запуск встроенного сервера Laravel:**
+```bash
+php artisan serve
+```
 
-   ```bash
-   php artisan serve
-   ```
+API будет доступно по адресу:
 
-   По умолчанию сервер будет доступен по адресу `http://localhost:8000`.
-
+```
+http://localhost:8000
+```
 
 ### Запуск через Docker
 
-1. **Установка Docker:**
+```bash
+docker build -t animalshelter_backend .
+docker run -d -p 8000:80 animalshelter_backend
+```
 
-   Убедитесь, что у вас установлен [Docker](https://www.docker.com/).
+Приложение будет доступно по адресу:
 
-2. **Создание Docker-образа:**
-
-   Выполните команду для сборки образа:
-
-   ```bash
-   docker build -t animalshelter_backend .
-   ```
-
-3. **Запуск контейнера:**
-
-   Запустите контейнер на основе созданного образа:
-
-   ```bash
-   docker run -d -p 8000:80 animalshelter_backend
-   ```
-
-   Приложение будет доступно по адресу `http://localhost:8000`.
+```
+http://localhost:8000
+```
+- управление анкетами животных;
+- личный кабинет пользователя;
+- сохранение понравившихся животных.
